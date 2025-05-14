@@ -250,15 +250,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cursor = db.rawQuery(
-                    "SELECT paciente, tratamiento, fecha, hora, dias FROM " + TABLE_ASIGNACIONES,
+                    "SELECT id, paciente, tratamiento, fecha, hora, dias FROM " + TABLE_ASIGNACIONES,
                     null);
 
             if (cursor.moveToFirst()) {
                 do {
                     HashMap<String, String> map = new HashMap<>();
-                    map.put("paciente", cursor.getString(0));
-                    map.put("detalle", cursor.getString(1) + " - " + cursor.getString(2) +
-                            " " + cursor.getString(3) + " (" + cursor.getString(4) + ")");
+                    map.put("id", cursor.getString(0));
+                    map.put("paciente", cursor.getString(1));
+                    map.put("tratamiento", cursor.getString(2));
+                    map.put("fecha", cursor.getString(3));
+                    map.put("hora", cursor.getString(4));
+                    map.put("dias", cursor.getString(5));
+                    map.put("detalle", cursor.getString(2) + " - " + cursor.getString(3) +
+                            " " + cursor.getString(4) + " (" + cursor.getString(5) + ")");
                     lista.add(map);
                 } while (cursor.moveToNext());
             }
@@ -270,7 +275,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return lista;
     }
-
     // Obtener tratamientos para VerTratamientosActivity
     public ArrayList<String> obtenerListaTratamientos() {
         ArrayList<String> lista = new ArrayList<>();
@@ -333,6 +337,38 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return result > 0;
         } catch (Exception e) {
             Log.e(TAG, "eliminarAsignacion: Error: " + e.getMessage());
+            return false;
+        }
+
+    }// Este es un metodo que debemos agregar a DatabaseHelper.java
+
+    // Agregar este metodo a la clase DatabaseHelper
+    public boolean actualizarAsignacion(int id, String paciente, String tratamiento, String fecha, String hora, String dias) {
+        Log.d(TAG, "actualizarAsignacion: Actualizando asignación ID: " + id);
+
+        try {
+            SQLiteDatabase db = this.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("paciente", paciente);
+            values.put("tratamiento", tratamiento);
+            values.put("fecha", fecha);
+            values.put("hora", hora);
+            values.put("dias", dias);
+
+            int result = db.update(TABLE_ASIGNACIONES,
+                    values,
+                    "id = ?",
+                    new String[]{String.valueOf(id)});
+
+            if (result > 0) {
+                Log.d(TAG, "actualizarAsignacion: Asignación actualizada correctamente, filas afectadas: " + result);
+                return true;
+            } else {
+                Log.e(TAG, "actualizarAsignacion: Error al actualizar asignación");
+                return false;
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "actualizarAsignacion: Excepción: " + e.getMessage());
             return false;
         }
     }

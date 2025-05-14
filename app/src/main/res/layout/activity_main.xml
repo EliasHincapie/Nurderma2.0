@@ -20,26 +20,44 @@
         android:id="@+id/btnRegistrarPaciente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registrar Paciente" />
+        android:text="Registrar Paciente"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnVerPacientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver/Eliminar Pacientes"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/btnAsignarTratamiento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Asignar Tratamiento"
-        android:layout_marginTop="16dp" />
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/btnVerTratamientos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ver Tratamientos"
-        android:layout_marginTop="16dp" />
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
 
     <Button
         android:id="@+id/btnVerAgenda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ver Agenda"
-        android:layout_marginTop="16dp" />
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp" />
 </LinearLayout>

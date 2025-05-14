@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Nurdermaaaaaa"
         tools:targetApi="31">
         <activity
+            android:name=".VerPacientesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditarAsignacionActivity"
+            android:exported="false" />
+        <activity
             android:name=".VerAgendaActivity"
             android:exported="false" />
         <activity

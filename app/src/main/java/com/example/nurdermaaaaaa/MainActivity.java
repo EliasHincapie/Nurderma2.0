@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnRegistrar, btnAsignar, btnVerTratamientos, btnVerAgenda;
+    Button btnRegistrar, btnAsignar, btnVerTratamientos, btnVerAgenda, btnVerPacientes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         btnAsignar = findViewById(R.id.btnAsignarTratamiento);
         btnVerTratamientos = findViewById(R.id.btnVerTratamientos);
         btnVerAgenda = findViewById(R.id.btnVerAgenda);
-
+        btnVerPacientes = findViewById(R.id.btnVerPacientes);
         btnRegistrar.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, RegistrarPacienteActivity.class);
             startActivity(i);
@@ -38,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
 
         btnVerAgenda.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, VerAgendaActivity.class);
+            startActivity(i);
+        });
+
+        btnVerPacientes.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, VerPacientesActivity.class);
             startActivity(i);
         });
     }
